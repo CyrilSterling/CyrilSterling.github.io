@@ -1,282 +1,482 @@
-
 <!doctype html>
 <html>
-
 <head>
 <title>Boqiang Zhang</title>
-
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="keywords" content="Boqiang Zhang"> 
-<meta name="description" content="Boqiang Zhang's home page">
-<link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
-<link rel="stylesheet" href="css/style2.css">
-<!-- <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"> -->
-<!-- <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"> -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="Boqiang Zhang, 张博强, Multimodal Large Language Models, Tencent AI Lab"> 
+<meta name="description" content="Boqiang Zhang's Personal Homepage">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+    /* --- 全局样式 --- */
+    :root {
+        --primary-color: #2c3e50; /* 深蓝灰色 */
+        --secondary-color: #3498db; /* 优雅的蓝色 */
+        --background-color: #f8f9fa; /* 非常浅的灰色背景 */
+        --text-color: #34495e; /* 柔和的黑色 */
+        --light-text-color: #7f8c8d; /* 浅色文本/副标题 */
+        --card-bg-color: #ffffff; /* 卡片背景 */
+        --border-color: #ecf0f1; /* 边框颜色 */
+    }
 
+    html {
+        scroll-behavior: smooth;
+    }
 
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.7;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* --- 链接和标题 --- */
+    a {
+        color: var(--secondary-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    a:hover {
+        color: #2980b9; /* 悬停时颜色变深 */
+        text-decoration: underline;
+    }
+
+    h1, h2, h3 {
+        color: var(--primary-color);
+        font-weight: 700;
+        margin-top: 0;
+    }
+
+    h1 {
+        font-size: 2.8em;
+        margin-bottom: 0.2em;
+    }
+
+    h2 {
+        font-size: 2em;
+        border-bottom: 2px solid var(--border-color);
+        padding-bottom: 10px;
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
+
+    h3 {
+        font-size: 1.4em;
+        color: var(--light-text-color);
+        font-weight: 500;
+        margin-bottom: 1em;
+    }
+
+    /* --- 导航栏 --- */
+    .navbar {
+        padding: 15px 0;
+        text-align: center;
+        background-color: var(--card-bg-color);
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: 40px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .navbar a {
+        margin: 0 20px;
+        font-size: 1.1em;
+        font-weight: 500;
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+
+    .navbar a:hover {
+        color: var(--secondary-color);
+        text-decoration: none;
+    }
+
+    /* --- 顶部个人信息 --- */
+    .hero-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        gap: 40px;
+    }
+
+    .hero-info {
+        flex: 3;
+    }
+
+    .hero-photo {
+        flex: 1;
+        max-width: 220px;
+        text-align: center;
+    }
+
+    .hero-photo img {
+        width: 100%;
+        height: auto;
+        border: 5px solid var(--card-bg-color);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .social-links a {
+        margin-right: 15px;
+        display: inline-block;
+        transition: transform 0.3s ease;
+    }
+    .social-links a:hover {
+        transform: scale(1.1);
+        text-decoration: none;
+    }
+
+    /* --- 内容区块 --- */
+    section {
+        margin-bottom: 40px;
+    }
+
+    /* --- 出版物列表 --- */
+    .paper {
+        display: flex;
+        background-color: var(--card-bg-color);
+        border-radius: 8px;
+        margin-bottom: 25px;
+        padding: 20px;
+        transition: all 0.3s ease;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        gap: 20px;
+    }
+
+    .paper:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .paper .pimg {
+        flex-shrink: 0;
+    }
+
+    .paper .pimg img {
+        width: 200px;
+        height: auto;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+    }
+    
+    .paper .pdetails {
+        flex-grow: 1;
+    }
+
+    .paper .ptitle {
+        font-size: 1.2em;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 5px;
+    }
+
+    .paper .pauthors {
+        font-size: 1em;
+        margin-bottom: 5px;
+    }
+
+    .paper .pvenue {
+        font-size: 1em;
+        color: var(--light-text-color);
+        font-style: italic;
+    }
+    
+    .paper .plinks a {
+        margin-right: 15px;
+        font-weight: 500;
+    }
+
+    /* --- 列表样式 (荣誉、服务) --- */
+    ul {
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 10px;
+    }
+
+    /* --- 工作经历 --- */
+    .experience-list {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .experience-item {
+        display: flex;
+        align-items: center;
+        background: var(--card-bg-color);
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        margin-bottom: 20px;
+        gap: 20px;
+    }
+
+    .experience-item img {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+    }
+
+    .experience-details {
+        font-size: 1em;
+    }
+
+    .experience-details .company {
+        font-weight: 700;
+        font-size: 1.1em;
+        color: var(--primary-color);
+    }
+
+    .experience-details .role, .experience-details .topic {
+        color: var(--light-text-color);
+    }
+
+    /* --- 页脚 --- */
+    footer {
+        text-align: center;
+        padding: 30px;
+        margin-top: 50px;
+        color: var(--light-text-color);
+        border-top: 1px solid var(--border-color);
+    }
+
+    /* --- 响应式设计 --- */
+    @media (max-width: 768px) {
+        h1 { font-size: 2.2em; }
+        h2 { font-size: 1.8em; }
+
+        .hero-section {
+            flex-direction: column-reverse; /* 头像在上方 */
+            text-align: center;
+        }
+
+        .hero-info {
+            text-align: center;
+        }
+
+        .navbar {
+            padding: 10px 0;
+        }
+
+        .navbar a {
+            margin: 0 10px;
+            font-size: 1em;
+        }
+
+        .paper {
+            flex-direction: column;
+        }
+        
+        .paper .pimg img {
+            width: 100%;
+            max-width: 250px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .experience-item {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+
+</style>
 </head>
-
-
 <body>
-
-<div id="layout-content" style="margin-top:25px">
-
-
-<table>
-	<tbody>
-		<tr>
-			<td width="75%">
-				<div id="toptitle">
-					<h1>Boqiang Zhang 张博强<h1>
-				</div>
-
-                <h3>Master Student</h3>
-
-		<p>
-                    University of Science and Technology of China</br>
-                    Email: cyril@mail.ustc.edu.cn </br>
-		</p>
-		<p>
-			<a href="https://github.com/CyrilSterling"><img src="assets/logos/github_logo.png" height="30px"></a>&nbsp;&nbsp;
-			<a href="https://scholar.google.com/citations?user=HE-PXScAAAAJ&hl=zh-CN"><img src="assets/logos/google_logo.png" height="30px"></a>&nbsp;&nbsp;
-		</p>
-			</td>
-
-			</td>
-			<td width="100%">
-				<img src="imgs/me.jpg" width="100%"/>
-			</td>
-		<tr>
-	</tbody>
-</table>
-
-
-<h2>About me</h2> 
-
-<p style="line-height: 25px;">
-I am currently a second-year (2022-now) Master student in University of Science and Technology of China (USTC), advised by Prof. Hongtao Xie. 
-I received bachelor's degree in Northwestern Polytechnical University (NWPU).
-</p>
-<p style="line-height: 25px;">
-I am now a research intern in DAMO Alibaba. Supervised by <a href="https://lixin4ever.github.io/">Xin Li</a> and <a href="https://lidongbing.github.io/">Lidong Bing</a>.
-</p>
-<p style="line-height: 25px;">
-My recent research interests are <em>multimodal large language models</em>, <em>Unified Understanding and Generation</em>. Before, I mainly focus on 
-the field of scene text recognition and editing, including self-supervised and semi-supervised approaches.
-</p>
-
-
-<p id="publications">
-<h2>Publications&Preprints</h2>
-</p>
-
-
-<div id="pubs"></div>
-    <div class="paper" style="clear:left;">
-        <div class="pimg" style="float:left;margin-top:10px;margin-bottom:10px;padding-left:3px;">
-            <img src="assets/imgs/videollama3.png" width="200" class="img-bordered" alt="photo">
-        </div>
-        <div class="ptitle" style="padding:1px;margin-left:240px;line-height:1.8">
-            VideoLLaMA 3: Frontier Multimodal Foundation Models for Image and Video Understanding
-        </div>
-        <div class="pauthors" style="padding:1px;margin-left:240px;line-height:1.8">
-            <b>Boqiang Zhang</b>, Kehan Li, Zesen Cheng, Zhiqiang Hu, Yuqian Yuan, Guanzheng Chen, Sicong Leng, Yuming Jiang, Hang Zhang, Xin Li, Peng Jin, Wenqi Zhang, Fan Wang, Lidong Bing, Deli Zhao
-        </div>
-        <div class="pvenue" style="padding:1px;margin-left:240px;line-height:1.8">
-            Arxiv, 2025
-        </div>
-        <div class="pvenue" style="padding:1px;margin-left:240px;line-height:1.8">
-            <p>
-            [<a href="https://arxiv.org/abs/2501.13106" target="_blank" rel="noopener">paper</a>]
-            [<a href="https://github.com/DAMO-NLP-SG/VideoLLaMA3" target="_blank" rel="noopener">code</a>] 
+<div class="container">
+    <header class="hero-section">
+        <div class="hero-info">
+            <h1>Boqiang Zhang 张博强</h1>
+            <h3>Senior Research Engineer at Tencent AI Lab</h3>
+            <p style="font-size: 1.1em;">
+                Email: arvidzhang@tencent.com
+            </p>
+            <p class="social-links">
+                <a href="https://github.com/CyrilSterling" target="_blank" rel="noopener" title="GitHub"><img src="assets/logos/github_logo.png" height="35px"></a>
+                <a href="https://scholar.google.com/citations?user=HE-PXScAAAAJ&hl=zh-CN" target="_blank" rel="noopener" title="Google Scholar"><img src="assets/logos/google_logo.png" height="35px"></a>
             </p>
         </div>
-    </div>
+        <div class="hero-photo">
+            <img src="imgs/me.jpg" alt="Boqiang Zhang's photo"/>
+        </div>
+    </header>
 
+    <nav class="navbar">
+        <a href="#about">About Me</a>
+        <a href="#publications">Publications</a>
+        <a href="#experience">Experience</a>
+        <a href="#honors">Honors</a>
+    </nav>
 
-						
-    <div class="paper" style="clear:left;">
-        <div class="pimg" style="float:left;margin-top:10px;margin-bottom:10px;padding-left:3px;">
-            <img src="assets/imgs/textgen.png" width="200" class="img-bordered" alt="photo">
-        </div>
-        <div class="ptitle" style="padding:1px;margin-left:240px;line-height:1.8">
-            How Control Information Influences Multilingual Text Image Generation and Editing?
-        </div>
-        <div class="pauthors" style="padding:1px;margin-left:240px;line-height:1.8">
-            <b>Boqiang Zhang</b>, Zuan Gao, Yadong Qu, Hongtao Xie*
-        </div>
-        <div class="pvenue" style="padding:1px;margin-left:240px;line-height:1.8">
-            NeurIPS, 2024
-        </div>
-        <div class="pvenue" style="padding:1px;margin-left:240px;line-height:1.8">
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
             <p>
-            [<a href="https://arxiv.org/abs/2407.11502" target="_blank" rel="noopener">paper</a>]
-            [<a href="https://github.com/CyrilSterling/TextGen" target="_blank" rel="noopener">code</a>] 
+                I hold a Master's degree from the University of Science and Technology of China (USTC), where I worked under the guidance of Prof. Hongtao Xie. I completed my Bachelor's degree at Northwestern Polytechnical University (NWPU).
             </p>
-        </div>
-    </div>
-
-
-
-    <div class="paper" style="clear:left;">
-        <div class="pimg" style="float:left;margin-top:10px;margin-bottom:10px;padding-left:3px;">
-            <img src="assets/imgs/cvpr2024.png" width="200" class="img-bordered" alt="photo">
-        </div>
-        <div class="ptitle" style="padding:1px;margin-left:240px;line-height:1.8">
-            Choose What You Need: Disentangled Representation Learning for Scene Text Recognition Removal and Editing
-        </div>
-        <div class="pauthors" style="padding:1px;margin-left:240px;line-height:1.8">
-            <b>Boqiang Zhang</b>, Hongtao Xie*, Zuan Gao, Yuxin Wang
-        </div>
-        <div class="pvenue" style="padding:1px;margin-left:240px;line-height:1.8">
-            CVPR, 2024
-        </div>
-        <div class="pvenue" style="padding:1px;margin-left:240px;line-height:1.8">
             <p>
-            [<a href="https://arxiv.org/abs/2405.04377" target="_blank" rel="noopener">paper</a>]
+                My current research interests focus on <em>multimodal large language models</em> and <em>unified understanding and generation</em>. Earlier in my career, I concentrated on scene text recognition and editing, exploring both self-supervised and semi-supervised learning approaches.
             </p>
-        </div>
-    </div>
+        </section>
 
+        <section id="publications">
+            <h2>Publications & Preprints</h2>
+            
+            <div class="paper">
+                <div class="pimg"><img src="assets/imgs/videollama3.png" alt="VideoLLaMA 3"></div>
+                <div class="pdetails">
+                    <div class="ptitle">VideoLLaMA 3: Frontier Multimodal Foundation Models for Image and Video Understanding</div>
+                    <div class="pauthors"><b>Boqiang Zhang</b>, Kehan Li, Zesen Cheng, Zhiqiang Hu, Yuqian Yuan, Guanzheng Chen, Sicong Leng, Yuming Jiang, Hang Zhang, Xin Li, Peng Jin, Wenqi Zhang, Fan Wang, Lidong Bing, Deli Zhao</div>
+                    <div class="pvenue">ArXiv, 2025</div>
+                    <div class="plinks">
+                        [<a href="https://arxiv.org/abs/2501.13106" target="_blank" rel="noopener">Paper</a>]
+                        [<a href="https://github.com/DAMO-NLP-SG/VideoLLaMA3" target="_blank" rel="noopener">Code</a>]
+                    </div>
+                </div>
+            </div>
+            
+            <div class="paper">
+                <div class="pimg"><img src="assets/imgs/textgen.png" alt="TextGen"></div>
+                <div class="pdetails">
+                    <div class="ptitle">How Control Information Influences Multilingual Text Image Generation and Editing?</div>
+                    <div class="pauthors"><b>Boqiang Zhang</b>, Zuan Gao, Yadong Qu, Hongtao Xie*</div>
+                    <div class="pvenue">NeurIPS, 2024</div>
+                    <div class="plinks">
+                        [<a href="https://arxiv.org/abs/2407.11502" target="_blank" rel="noopener">Paper</a>]
+                        [<a href="https://github.com/CyrilSterling/TextGen" target="_blank" rel="noopener">Code</a>]
+                    </div>
+                </div>
+            </div>
+            
+            <div class="paper">
+                <div class="pimg"><img src="assets/imgs/cvpr2024.png" alt="CVPR 2024 paper"></div>
+                <div class="pdetails">
+                    <div class="ptitle">Choose What You Need: Disentangled Representation Learning for Scene Text Recognition Removal and Editing</div>
+                    <div class="pauthors"><b>Boqiang Zhang</b>, Hongtao Xie*, Zuan Gao, Yuxin Wang</div>
+                    <div class="pvenue">CVPR, 2024</div>
+                    <div class="plinks">
+                        [<a href="https://arxiv.org/abs/2405.04377" target="_blank" rel="noopener">Paper</a>]
+                    </div>
+                </div>
+            </div>
 
+            <div class="paper">
+                <div class="pimg"><img src="assets/imgs/lpv.png" alt="LPV paper"></div>
+                <div class="pdetails">
+                    <div class="ptitle">Linguistic more: Taking a further step toward efficient and accurate scene text recognition</div>
+                    <div class="pauthors"><b>Boqiang Zhang</b>, Hongtao Xie*, Yuxin Wang, Jianjun Xu, Yongdong Zhang</div>
+                    <div class="pvenue">IJCAI, 2023</div>
+                    <div class="plinks">
+                        [<a href="https://arxiv.org/abs/2305.05140" target="_blank" rel="noopener">Paper</a>]
+                        [<a href="https://github.com/CyrilSterling/LPV" target="_blank" rel="noopener">Code</a>]
+                    </div>
+                </div>
+            </div>
+            
+            <div class="paper">
+                <div class="pimg"><img src="assets/imgs/clipstr.png" alt="CLIPSTR paper"></div>
+                <div class="pdetails">
+                    <div class="ptitle">Symmetrical linguistic feature distillation with clip for scene text recognition</div>
+                    <div class="pauthors">Zixiao Wang, Hongtao Xie*, Yuxin Wang, Jianjun Xu, <b>Boqiang Zhang</b>, Yongdong Zhang</div>
+                    <div class="pvenue">ACM MM, 2023</div>
+                    <div class="plinks">
+                        [<a href="https://arxiv.org/abs/2310.04999" target="_blank" rel="noopener">Paper</a>]
+                        [<a href="https://github.com/wzx99/CLIPOCR" target="_blank" rel="noopener">Code</a>]
+                    </div>
+                </div>
+            </div>
 
-    <div class="paper" style="clear:left;">
-      <div class="pimg" style="float:left;margin-top:10px;margin-bottom:10px;padding-left:3px;">
-          <img src="assets/imgs/lpv.png" width="200" class="img-bordered" alt="photo">
-      </div>
-      <div class="ptitle" style="padding:1px;margin-left:240px;line-height:1.8">
-        Linguistic more: Taking a further step toward efficient and accurate scene text recognition
-      </div>
-      <div class="pauthors" style="padding:1px;margin-left:240px;line-height:1.8">
-        <b>Boqiang Zhang</b>, Hongtao Xie*, Yuxin Wang, Jianjun Xu, Yongdong Zhang
-      </div>
-      <div class="pvenue" style="padding:1px;margin-left:240px;line-height:1.8">
-        IJCAI, 2023
-      </div>
-      <div class="pvenue" style="padding:1px;margin-left:240px;line-height:1.8">
-          <p>
-          [<a href="https://arxiv.org/abs/2305.05140" target="_blank" rel="noopener">paper</a>]
-          [<a href="https://github.com/CyrilSterling/LPV" target="_blank" rel="noopener">code</a>]
-          </p>
-      </div>
-    </div>
-           
-           
-    <div class="paper" style="clear:left;">
-      <div class="pimg" style="float:left;margin-top:7px;margin-bottom:10px;padding-left:3px;">
-          <img src="assets/imgs/clipstr.png" width="200" class="img-bordered" alt="photo">
-      </div>
-      <div class="ptitle" style="padding:1px;margin-left:240px;line-height:1.8">	
-        Symmetrical linguistic feature distillation with clip for scene text recognition
-      </div>
-      <div class="pauthors" style="padding:1px;margin-left:240px;line-height:1.8">
-        Zixiao Wang, Hongtao Xie*, Yuxin Wang, Jianjun Xu, <b>Boqiang Zhang</b>,, Yongdong Zhang
-      </div>
-      <div class="pvenue" style="padding:1px;margin-left:240px;line-height:1.8">
-          ACM MM, 2023
-      </div>
-      <div class="pvenue" style="padding:1px;margin-left:240px;line-height:1.8">
-        <p>
-        [<a href="https://arxiv.org/abs/2310.04999" target="_blank" rel="noopener">paper</a>]
-        [<a href="https://github.com/wzx99/CLIPOCR" target="_blank" rel="noopener">code</a>] 
-        </p>
-    </div>
+            <div class="paper">
+                <div class="pimg"><img src="assets/imgs/ssm.png" alt="SSM paper"></div>
+                <div class="pdetails">
+                    <div class="ptitle">Self-Supervised Pre-training with Symmetric Superimposition Modeling for Scene Text Recognition</div>
+                    <div class="pauthors">Zuan Gao, Yuxin Wang*, Yadong Qu, <b>Boqiang Zhang</b>, Zixiao Wang, Jianjun Xu, Hongtao Xie</div>
+                    <div class="pvenue">IJCAI, 2024</div>
+                    <div class="plinks">
+                        [<a href="https://arxiv.org/abs/2405.05841" target="_blank" rel="noopener">Paper</a>]
+                        [<a href="https://github.com/FaltingsA/SSM" target="_blank" rel="noopener">Code</a>]
+                    </div>
+                </div>
+            </div>
 
+            <div class="paper">
+                <div class="pimg"><img src="assets/imgs/i2cl.png" alt="I2CL paper"></div>
+                <div class="pdetails">
+                    <div class="ptitle">Focus on the Whole Character: Discriminative Character Modeling for Scene Text Recognition</div>
+                    <div class="pauthors">Bangbang Zhou, Yadong Qu, Zixiao Wang, Zicheng Li, <b>Boqiang Zhang</b>, Hongtao Xie*</div>
+                    <div class="pvenue">IJCAI, 2024</div>
+                    <div class="plinks">
+                        [<a href="https://arxiv.org/abs/2407.05562" target="_blank" rel="noopener">Paper</a>]
+                        [<a href="https://github.com/bang123-box/CFE" target="_blank" rel="noopener">Code</a>]
+                    </div>
+                </div>
+            </div>
 
-    <div class="paper" style="clear:left;">
-        <div class="pimg" style="float:left;margin-top:7px;margin-bottom:10px;padding-left:3px;">
-            <img src="assets/imgs/ssm.png" width="200" class="img-bordered" alt="photo">
-        </div>
-        <div class="ptitle" style="padding:1px;margin-left:240px;line-height:1.8">	
-            Self-Supervised Pre-training with Symmetric Superimposition Modeling for Scene Text Recognition
-        </div>
-        <div class="pauthors" style="padding:1px;margin-left:240px;line-height:1.8">
-            Zuan Gao, Yuxin Wang*, Yadong Qu, <b>Boqiang Zhang</b>, Zixiao Wang, Jianjun Xu, Hongtao Xie
-        </div>
-        <div class="pvenue" style="padding:1px;margin-left:240px;line-height:1.8">
-            IJCAI, 2024
-        </div>
-        <div class="pvenue" style="padding:1px;margin-left:240px;line-height:1.8">
-          <p>
-          [<a href="https://arxiv.org/abs/2405.05841" target="_blank" rel="noopener">paper</a>]
-          [<a href="https://github.com/FaltingsA/SSM" target="_blank" rel="noopener">code</a>] 
-          </p>
-      </div>
+        </section>
 
+        <section id="experience">
+            <h2>Working Experience</h2>
+            <ul class="experience-list">
+                <li class="experience-item">
+                    <img src="imgs/tencent_ailab.png" alt="Tencent AI Lab Logo">
+                    <div class="experience-details">
+                        <div class="company">Tencent AI Lab | ShenZhen | Jul. 2025 - Present</div>
+                        <div class="role">Senior Research Engineer</div>
+                        <div class="topic">Topic: Multi-modal Large Language Model, Image/Video Understanding and Generation</div>
+                    </div>
+                </li>
+                <li class="experience-item">
+                    <img src="imgs/damo.png" alt="Alibaba DAMO Academy Logo">
+                    <div class="experience-details">
+                        <div class="company">Alibaba DAMO Academy | Hangzhou | Jun. 2024 - Jul. 2025</div>
+                        <div class="role">Research Intern</div>
+                        <div class="topic">Topic: Multi-modal Large Language Model, Image/Video Understanding, Embodied AI</div>
+                        <div>Mentor: <a href="https://lixin4ever.github.io/" target="_blank" rel="noopener">Xin Li</a>, <a href="https://lidongbing.github.io/" target="_blank" rel="noopener">Lidong Bing</a></div>
+                    </div>
+                </li>
+            </ul>
+        </section>
 
-      <div class="paper" style="clear:left;">
-        <div class="pimg" style="float:left;margin-top:7px;margin-bottom:10px;padding-left:3px;">
-            <img src="assets/imgs/i2cl.png" width="200" class="img-bordered" alt="photo">
-        </div>
-        <div class="ptitle" style="padding:1px;margin-left:240px;line-height:1.8">	
-            Focus on the Whole Character: Discriminative Character Modeling for Scene Text Recognition
-        </div>
-        <div class="pauthors" style="padding:1px;margin-left:240px;line-height:1.8">
-            Bangbang Zhou, Yadong Qu, Zixiao Wang, Zicheng Li, <b>Boqiang Zhang</b>, Hongtao Xie*
-        </div>
-        <div class="pvenue" style="padding:1px;margin-left:240px;line-height:1.8">
-            IJCAI, 2024
-        </div>
-        <div class="pvenue" style="padding:1px;margin-left:240px;line-height:1.8">
-          <p>
-          [<a href="https://arxiv.org/abs/2407.05562" target="_blank" rel="noopener">paper</a>]
-          [<a href="https://github.com/bang123-box/CFE" target="_blank" rel="noopener">code</a>] 
-          </p>
-      </div>
-    </div>
+        <section id="services">
+            <h2>Services</h2>
+            <ul>
+                <li>Conference Reviewer: NeurIPS, ACM MM, ICLR, ICML, TMM</li>
+            </ul>
+        </section>
 
-<!-- </ul> -->
-</script>
+        <section id="honors">
+            <h2>Honors</h2>
+            <ul>
+                <li>Outstanding Graduate of USTC and Province Anhui, 2025</li>
+                <li>HuaWei Scholarship, 2023</li>
+                <li>Outstanding Graduate of NWPU, 2022 (top 5%)</li>
+                <li>National Scholarship, 2024, 2021, 2020, 2019</li>
+                <li>Outstanding Student of NWPU, 2020 (top 1%)</li>
+            </ul>
+        </section>
+    </main>
 
-
-</script>
-
-<script>var scroll = new SmoothScroll('a[href*="#"]', {speed: 1000});</script>
-
-<h2>Services</h2>
-<ul>
-    <li>
-        Conference Reviewer: NeurlIPS 2024, ACM MM 2024, ICLR 2025, ICML 2025, TMM
-    </li>
-</ul>
-
-
-<h2>Honors</h2>
-
-<ul>
-    <li>
-        HuaWei Scholarship, 2023
-    </li>
-    <li>
-        Outstanding Graduate of NWPU, 2022 (top 5%)
-    </li>
-    <li>
-        National Scholarship, 2024, 2021, 2020, 2019
-    </li>
-    <li>
-        Outstanding Student of NWPU, 2020 (top 1%)
-    </li>
-</ul>
-
-<!-- <h2>Research Intern</h2>
-<ul>
-    <li>
-        Evomics, research intern, Shanghai.
-
-    </li>
-</ul> -->
-
-
-<table width="100%"> 
-	<tr> 
-		<td align="center">&copy; Boqiang Zhang | Last update: Jan 2025</td>
-	</tr> 
-</table>
+    <footer>
+        &copy; Boqiang Zhang | Last updated: July 2025
+    </footer>
 
 </div>
-
-
 </body>
-
 </html>
-
