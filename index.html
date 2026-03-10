@@ -20,7 +20,6 @@
         --light-text-color: #6b7280;
         --card-bg-color: #ffffff;
         --border-color: #e5e7eb;
-        --accent-warm: #f59e0b;
         --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
         --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
         --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
@@ -322,45 +321,16 @@
         position: absolute;
         top: 0;
         left: 100%;
-        margin-left: 4px;
+        margin-left: 0;
+        z-index: 1;
         display: inline-flex;
         align-items: center;
-        gap: 2px;
-        padding: 1px 4px 1px 6px;
-        font-size: 0.65em;
-        font-weight: 500;
-        color: var(--light-text-color);
-        background: #f3f4f6;
-        border-radius: 3px;
-        white-space: nowrap;
     }
     
-    .paper .plinks .star-badge::before {
-        content: '';
-        position: absolute;
-        left: -4px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 0;
-        height: 0;
-        border-top: 4px solid transparent;
-        border-bottom: 4px solid transparent;
-        border-right: 4px solid #f3f4f6;
-    }
-    
-    .paper .plinks .star-badge .star-icon {
-        display: flex;
-        color: #ca8a04;
-    }
-    
-    .paper .plinks .star-badge .star-icon svg {
-        width: 8px;
-        height: 8px;
-    }
-    
-    .paper .plinks .star-badge .star-num {
-        font-weight: 600;
-        color: var(--primary-color);
+    .paper .plinks .star-badge img {
+        height: 20px;
+        width: auto;
+        display: block;
     }
 
     /* --- 列表样式 (荣誉、服务) --- */
@@ -738,32 +708,23 @@
     window.addEventListener('load', updateActive);
 })();
 
-// GitHub star count for Code links
+// GitHub star count for Code links (shields.io image - works everywhere, no CORS, first 5 only)
 (function() {
-    function formatStars(n) {
-        if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
-        return n.toString();
-    }
-    var starSvg = '<span class="star-icon"><svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg></span>';
+    var count = 0;
     document.querySelectorAll('.link-code').forEach(function(link) {
-        var m = link.href.match(/github\.com\/([^\/]+\/[^\/]+)/);
-        if (!m) return;
-        fetch('https://api.github.com/repos/' + m[1])
-            .then(function(r) { return r.json(); })
-            .then(function(data) {
-                if (data.stargazers_count != null) {
-                    var wrapper = document.createElement('span');
-                    wrapper.className = 'code-with-stars';
-                    link.parentNode.insertBefore(wrapper, link);
-                    wrapper.appendChild(link);
-                    var badge = document.createElement('span');
-                    badge.className = 'star-badge';
-                    badge.title = 'GitHub stars';
-                    badge.innerHTML = starSvg + '<span class="star-num">' + formatStars(data.stargazers_count) + '</span>';
-                    wrapper.appendChild(badge);
-                }
-            })
-            .catch(function() {});
+        var m = link.href.match(/github\.com\/([^\/]+\/[^\/]+?)(?:\/|$)/);
+        if (!m || count >= 5) return;
+        count++;
+        var repo = m[1];
+        var wrapper = document.createElement('span');
+        wrapper.className = 'code-with-stars';
+        link.parentNode.insertBefore(wrapper, link);
+        wrapper.appendChild(link);
+        var badge = document.createElement('span');
+        badge.className = 'star-badge';
+        badge.title = 'GitHub stars';
+        badge.innerHTML = '<img src="https://img.shields.io/github/stars/' + repo + '?style=flat-square" alt="stars">';
+        wrapper.appendChild(badge);
     });
 })();
 </script>
